@@ -18,7 +18,7 @@ namespace MyBlog.DataLayer
         [Display(Name = "نام انگلیسی وب سایت")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string WebsiteEnglishName { get; set; }
-        [Display(Name = "نام  وب سایت")]
+        [Display(Name = "نام صاحب وب سایت")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string WebsiteOwner { get; set; }
         [Display(Name = "درباره ما")]
