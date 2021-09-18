@@ -1,0 +1,93 @@
+﻿@model MyBlog.DataLayer.Post
+
+@{
+    ViewBag.Title = "جزئیات نوشته";
+}
+
+<h2 class="text-secondary text-center">جزئیات نوشته</h2>
+
+<div class="container">
+
+    <dl class="dl-horizontal">
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.PostTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostTitle)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.PostDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostDescription)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.PostText)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.PostText)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.PostKeywords)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostKeywords)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.PostDate)
+        </dt>
+
+        <dd>
+            @MyBlog.Utilities.PersianCalender.ToShamsi(Model.PostDate)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.User.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Username)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.ImageName)
+        </dt>
+
+        <dd>
+            <img src="/Images/Posts/MainImages/OriginalSize/@Model.ImageName" alt="@Model.ImageAlt" class="img-fluid" style="max-height:300px;" />
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.ImageAlt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageAlt)
+        </dd>
+
+    </dl>
+
+
+
+    
+           
+            <a href="@Url.Action("Index" , "Posts")" class="btn btn-secondary">برگشت</a>
+    
+   
+</div>

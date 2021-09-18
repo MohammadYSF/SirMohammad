@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "خانه";
+}
+<section id="body">
+    <div class="container">
+        <h1 class="h3 mt-4 mb-2">خوش آمده اید به <span class="home-link">@ViewBag.WebsitePersianName</span></h1>
+        @Html.Action("GetPosts", "Home")
+    </div>
+</section>

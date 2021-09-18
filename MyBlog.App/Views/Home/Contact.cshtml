@@ -1,0 +1,49 @@
+﻿@model MyBlog.DataLayer.WebsiteDetails
+@{
+    ViewBag.Title = "تماس با ما";
+}
+<section id="body">
+    <div class="container">
+        <div class="articleHeader">
+            <h1 class="home-link mb-3">درباره من</h1>
+        </div>
+        <div class="articleBody">
+            <p>
+               @Model.ContactText
+
+            </p>
+            <div class="socialMediaContact">
+                <table class="table">
+                    <thead>
+                        <tr>
+
+                            <th scope="col">شبکه اجتماعی</th>
+                            <th scope="col">آیدی یا شماره</th>
+                            <th scope="col">لینک</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-primary">
+
+                            <td>اینستاگرام</td>
+                            <td>@Model.InstagramID</td>
+                            <td><a href="">Go <i class="fa fa-instagram"></i></a></td>
+                        </tr>
+                        <tr class="table-info">
+                            <td>تلگرام</td>
+                            <td>@Model.TelegramID</td>
+                            <td><a href="">Go <i class="fa fa-paper-plane"></i></a></td>
+
+                        </tr>
+                        <tr class="table-success">
+                            <td>واتساپ</td>
+                            <td>@Model.PhoneNumber</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>

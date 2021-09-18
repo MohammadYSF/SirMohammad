@@ -1,0 +1,110 @@
+﻿@model List<MyBlog.DataLayer.Comment>
+<div class="col-12 col-md-6 " id="comments_list">
+    @foreach (var item in Model.OrderByDescending(a=> a.CommentDate))
+    {
+        if (item.ParentID == 0)
+        {
+                <!-- Start Comment Item -->
+            <div class="text-right" dir="rtl" id="post_comment_@item.CommentID">
+                <!-- Start Commentor Info  -->
+                <div class="row ">
+                    <p class="w-100 text-secondary">
+                        <span class="alert alert-danger py-0 px-3 mx-3">
+                            @item.CommentName
+                        </span>
+                        در<span class="text-secondary">
+                            @MyBlog.Utilities.PersianCalender.ToShamsi(item.CommentDate)
+                        </span>
+                        گفته :
+                        @if (User.IsInRole("admin"))
+                        {
+                            <span class="mx-4" onclick="deleteComment(@item.CommentID)"><i class="fa fa-trash text-danger"></i></span>
+                        }
+                        <!--reply comment is undeer construction !-->
+                        @*<span class="" onclick="replyComment(@item.CommentID , '@(item.CommentName.ToString())')"><i class="fa fa-reply text-secondary"></i></span>*@
+                    </p>
+
+
+
+
+                </div>
+                <!-- End Commentor Info -->
+                <!-- Start Comment Text -->
+                <div class="row commentText">
+                    <p class="mr-5">
+                        @item.CommentText
+                    </p>
+                </div>
+                <!-- End Comment Text -->
+            </div>
+    <!-- End Comment Item -->
+            
+            if (item.Comment2.Count > 0)
+            {
+                foreach (var sub in item.Comment2.ToList())
+                {
+                                                <!-- Start Comment Reply -->
+                    <div class="text-right px-5" dir="rtl" id="post_comment_@sub.CommentID">
+                        <!-- Start Commentor Info  -->
+                        <div class="row ">
+                            <p class="w-100 text-secondary">
+                                <span class="alert alert-warning  py-1 px-2">
+                                    @sub.CommentName
+                                </span>
+                                در<span class=" text-warning">
+                                    @MyBlog.Utilities.PersianCalender.ToShamsi(sub.CommentDate)
+                                </span>
+                                پاسخ داده که :
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <button class="btn btn-danger btn-sm" onclick="deleteComment(@item.CommentID)"><i class="fa fa-trash"></i></button>
+                                }
+                            </p>
+
+
+
+
+                        </div>
+                        <!-- End Commentor Info -->
+                        <!-- Start Comment Text -->
+                        <div class="row commentText">
+                            <p>
+                                @sub.CommentText
+                            </p>
+                        </div>
+                        <!-- End Comment Text -->
+                    </div>
+    <!-- End Comment Reply -->
+                }
+            }
+
+
+
+
+        }
+
+
+
+
+    }
+</div>
+<script>
+    const deleteComment = (id) => {
+        $.get("/Comments/DeleteComment?commentID=" + id,(response) => {
+            document.getElementById('comments_list').innerHTML = response;
+            alert('با موفقیت حذف شد');
+        });
+    };
+    const replyComment = (id , name) => {
+        document.querySelector("#add-comment-form #ParentID").value = id;
+
+        console.log(document.querySelector("#add-comment-form p").innerHTML);
+        document.querySelector("#add-comment-form p").innerHTML = `در حال پاسخ به <span class="fw-italic fw-fw-bold">${name}</span>`
+        document.querySelector("#add-comment-form p").classList.remove('d-none');
+        document.getElementById('add-comment-form').scrollIntoView({
+            behavior : 'smooth'
+        });
+
+        
+    };
+</script>

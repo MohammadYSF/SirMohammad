@@ -1,0 +1,11 @@
+﻿@model IEnumerable<MyBlog.DataLayer.Category>
+@foreach (var item in Model.ToList())
+{
+    <li class="list-group-item bg-transparent">
+        <a href="@Url.Action("SearchByCategory" , "Home" , new {catID = item.CategoryID })" class="home-link">
+            @item.CategoryName
+        </a>
+    </li>
+
+}
+

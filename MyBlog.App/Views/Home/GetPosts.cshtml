@@ -1,0 +1,33 @@
+﻿@model List<MyBlog.DataLayer.Post>
+<div class="lastArticle">
+    <div class="card mb-3 border-0 border-bottom">
+
+        <img src="/Images/Posts/MainImages/OriginalSize/@Model.First().ImageName" class="card-img-top img-fluid" alt="@Model.First().ImageAlt" title="@Model.First().PostTitle">
+        <div class="card-body">
+            <h5 class="card-title"><a class="home-link" href="@Url.Action("GetPost" , "Home" , new {id = Model.First().PostID })">@Model.First().PostTitle</a></h5>
+            <p class="card-text">@Model.First().PostDescription</p>
+            <p class="card-text"><small class="text-muted">نوشته در @MyBlog.Utilities.PersianCalender.ToShamsi(Model.First().PostDate)</small></p>
+        </div>
+    </div>
+</div>
+
+<div class="articles">
+    @foreach (var item in Model.Skip(1))
+    {
+        <div class="card mb-1 border-0 border-bottom">
+            <div class="row g-0">
+                <div class="col-md-2">
+                    <img src="/Images/Posts/MainImages/100x100/@item.ImageName" class="img-fluid" alt="@item.ImageAlt" title="@item.ImageName">
+                </div>
+                <div class="col-md-10 p-0">
+                    <div class="card-body">
+                        <h5 class="card-title"><a class="home-link" href="@Url.Action("GetPost" , "Home" , new {id = item.PostID })">@item.PostTitle</a></h5>
+                        <p class="card-text">@item.PostDescription</p>
+                        <p class="card-text"><small class="text-muted">نوشته در @MyBlog.Utilities.PersianCalender.ToShamsi(item.PostDate)</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

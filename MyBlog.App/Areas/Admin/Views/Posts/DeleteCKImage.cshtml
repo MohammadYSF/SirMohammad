@@ -1,0 +1,19 @@
+﻿@model IEnumerable<MyBlog.ViewModels.ImageViewModel>
+
+@foreach (var image in Model)
+{
+                      <!-- DEMO 3 Item-->
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+        <div class="hover hover-3 text-white rounded">
+            <img src="@(Request.Url.GetLeftPart(UriPartial.Authority)+image.ImageUrl)" alt="Hejsan" id="#image" data-source="@(Request.Url.GetLeftPart(UriPartial.Authority)+image.ImageUrl)">
+            <div class="hover-overlay"></div>
+            <div class="hover-3-content px-5 py-4 btn-group" role="group">
+                <button class="btn btn-outline-success hover-3-description returnImage w-50" data-url="@(Request.Url.GetLeftPart(UriPartial.Authority)+image.ImageUrl)">انتخاب</button>
+                <button class="btn btn-outline-danger hover-3-description w-50 mx-2" onclick="DeleteSubImage('@(image.ImageName)')">حذف</button>
+
+            </div>
+        </div>
+    </div>
+}
+
+

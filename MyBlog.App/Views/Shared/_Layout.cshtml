@@ -1,0 +1,94 @@
+﻿
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css"
+          integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">
+    <title>@ViewBag.Title</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v29.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link href="/Content/customStyles.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="/SirMohammad_WithoutBackground300x100.png" />
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="@Url.Action("Index" , "Home")" title="@ViewBag.WebsitePersianName"><img src="/SirMohammad_WithoutBackground300x100.png"  /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="@Url.Action("Index" , "Home")" title="@ViewBag.WebsitePersianName">خانه</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("GetAllPosts" , "Home")">نوشته های من</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Contact" , "Home")" title="ارتباط با ما">تماس با من</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("About" , "Home")" title="درباره ما" tabindex="-1">درباره من</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item text-success">
+                                <a class="nav-link" href="@Url.Action("Index" , "Posts" ,  new {area ="Admin" })" tabindex="-1">پنل ادمین</a>
+                            </li>
+                        }
+                    </ul>
+
+                    <form class="d-flex" action="@Url.Action("SearchByQ" , "Home")">
+                        <input class="form-control me-2" type="search" name="q" placeholder="دنبال چی می گردی ؟"
+                               aria-label="Search">
+                        <button class="btn btn-outline-danger" type="submit">بگرد</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    @RenderBody()
+
+    <footer class="bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item bg-transparent">موضوعات وبلاگ</li>
+                        @Html.Action("GetCategories" , "Home")
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body">
+                            <img src="/SirMohammad_WithoutBackground300x100.png" width="150px" height="50px"  alt="سلام آقا محمد" />
+                            <h5>من ؟</h5>
+
+                            <p class="card-text">من محمدم . کار خاصی نمی کنم . خوندن و استفاده از تجربیات دیگران رو خیلی دوست دارم . کلا از ورزش خوشم میاد مخصوصا فوتبال . موسیقی هم دوست دارم . فعلا</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="div text-center bg-transparent">
+                <p>کپی ممنوع</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    @RenderSection("scripts", false)
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MyBlog.DataLayer.Users>
+@{
+    ViewBag.Title = "مدیریت کاربران";
+}
+<section class="mt-4">
+    <div class="container">
+        <div class="row">
+            
+            <div class="text-center">
+                <a href="@Url.Action("Add" , "Users")" class="w-50 btn btn-success">
+                    <i class="fa fa-plus mr-1"></i>افزودن کاربر
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="users-list mt-4">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h4>کاربران</h4>
+
+            </div>
+
+            <table class="table table-striped">
+                <thead class="thead-dark w-100">
+                    <tr>
+                        <th>#</th>
+                        <th>@Html.DisplayNameFor(model => model.Username)</th>
+                        <th>@Html.DisplayNameFor(model => model.Role.RoleName)</th>
+                        <th class="d-none d-lg-table-cell">@Html.DisplayNameFor(model => model.Email)</th>
+                        <th class="d-none d-lg-table-cell">@Html.DisplayNameFor(model => model.RegisterDate)</th>
+                        <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                        <th class="d-none d-lg-table-cell">@Html.DisplayNameFor(model => model.isAuthor)</th>
+                        <th class="d-none d-lg-table-cell">@Html.DisplayNameFor(model => model.ImageName)</th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="user_row_@item.UserID">
+                            <td>@item.UserID</td>
+                            <td>@item.Role.RoleName</td>
+                            <td class="post_titles">@item.Username</td>
+                            <td class="d-none d-lg-table-cell">@item.Email</td>
+                            <td class="d-none d-lg-table-cell">@(MyBlog.Utilities.PersianCalender.ToShamsi(item.RegisterDate))</td>
+                            <td>@item.PhoneNumber</td>
+                            <td class="d-none d-lg-table-cell">@item.isAuthor</td>
+                            <td class="d-none d-lg-table-cell"><img src="/Images/Profiles/100x100/@item.ImageName" style="max-width:150px;max-height:150px" alt="@item.Username" class="img-fluid" /></td>
+                            <td>
+                                <a href="@(Url.Action("Delete" , "Users" , routeValues : new {id=item.UserID }))" class="btn btn-danger btn-sm">حذف</a>
+                                <a href="@(Url.Action("Edit" , "Users" , routeValues : new {id=item.UserID }))" class="btn btn-warning btn-sm">ویرایش</a>
+
+                            </td>
+
+
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</section>
+

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MyBlog.DataLayer.Post>
+@{
+    if (ViewBag.isGettingAll == false)
+    {
+        ViewBag.Title = "نوشته ها در شاخه " + ViewBag.CategoryName;
+    }
+    else
+    {
+        ViewBag.Title = "همه نوشته های وب سایت";
+    }
+}
+<section id="body">
+    <div class="container">
+        @if (ViewBag.isGettingAll == false)
+        {
+            <h1 class="mb-5">
+                @(Model.ToList().Count) مقاله در شاخه <span class="home-link">@(ViewBag.CategoryName)</span> پیدا شد
+            </h1>
+
+        }
+
+        @foreach (var item in Model.ToList())
+        {
+            <div class="card mb-1 border-0 border-bottom">
+                <div class="row g-0">
+                    <div class="col-md-2">
+                        <img src="/Images/Posts/MainImages/100x100/@item.ImageName" class="img-fluid" alt="@item.ImageAlt" title="@item.ImageName">
+                    </div>
+                    <div class="col-md-10 p-0">
+                        <div class="card-body">
+                            <h5 class="card-title"><a class="home-link" href="@Url.Action("GetPost" , "Home" , new {id = item.PostID })">@item.PostTitle</a></h5>
+                            <p class="card-text">@item.PostDescription</p>
+                            <p class="card-text"><small class="text-muted">نوشته در @MyBlog.Utilities.PersianCalender.ToShamsi(item.PostDate)</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+</section>
+
+
+

@@ -1,0 +1,79 @@
+﻿@model MyBlog.DataLayer.Post
+@{
+    ViewBag.Title = Model.PostTitle;
+}
+
+<section id="body">
+    <div class="container">
+        <div class="articleHeader">
+            <h1>@Model.PostTitle</h1>
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item border-0">در <b class="home-link">@ViewBag.CategoryName</b></li>
+                <li class="list-group-item border-0">@MyBlog.Utilities.PersianCalender.ToShamsi(Model.PostDate)</li>
+                <li class="list-group-item border-0 home-link" style="position:relative;bottom:10px;">
+                    @Model.User.Username
+                <img src="/Images/Profiles/100x100/@Model.User.ImageName" width="40px" height="40px" class="rounded-circle " alt="@Model.User.Username">
+
+
+            </li>
+        </ul>
+    </div>
+    <div class="articleImage my-5">
+        <img src="/Images/Posts/MainImages/OriginalSize/@Model.ImageName" alt="@Model.ImageAlt" title="@Model.ImageName" class="img-fluid" loading="lazy">
+    </div>
+    <div class="articleBody">
+        <p>
+            @Html.Raw(Model.PostText)
+        </p>
+    </div>
+
+    @Html.Action("GetOtherPosts", "Post", new { postID = Model.PostID })
+    <div class="articleComments">
+        <div class="row" id="productExtra">
+
+
+            <div class="multi-collapse w-100 collapse show" id="productComments" data-parent="#productExtra">
+                <div class="card card-body border-0">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <!-- Start submit your comment -->
+                            @Html.Action("AddComment", "Comments", new { @id = Model.PostID })
+                            <!-- End submit your comment -->
+                            <!-- Start Comments List -->
+                            @Html.Action("GetCommentsByPostID", "Comments", new { @id = Model.PostID })
+                            <!-- End Comments List -->
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js" integrity="sha512-DedNBWPF0hLGUPNbCYfj8qjlEnNE92Fqn7xd3Sscfu7ipy7Zu33unHdugqRD3c4Vj7/yLv+slqZhMls/4Oc7Zg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+        const reactToSuccessAddComment = () => {
+            location.reload();
+            document.querySelector("#add-comment-form p span").classList.add('d-none');
+            alert("کامنت شما با موفقیت اضافه شد");
+            document.querySelector("#add-comment-form #CommentName").value = '';
+            document.querySelector("#add-comment-form #CommentEmail").value = '';
+            document.querySelector("#add-comment-form #CommentText").value = '';
+            document.querySelector("#add-comment-form #ParentID").value = '';
+
+
+
+        };
+        const reactToFailureAddComment = () => {
+            alert("کامنت اضافه نشد :( دوباره امتحان کنید");
+        }
+
+
+
+
+    </script>
+}

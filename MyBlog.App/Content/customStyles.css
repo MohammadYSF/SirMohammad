@@ -1,0 +1,27 @@
+﻿      * {
+            font-family: 'Vazir', sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .home-link {
+            color: #C70D3A;
+            text-decoration: none;
+        }
+
+            .home-link:hover {
+                color: #c70d97 !important;
+            }
+
+        input {
+        }
+
+            input:focus , textarea:focus {
+                color: #666 !important;
+                background-color: #F3CED7 !important;
+                border:1px solid #888 !important;
+                outline: 0 !important;
+                box-shadow: none !important;
+            }

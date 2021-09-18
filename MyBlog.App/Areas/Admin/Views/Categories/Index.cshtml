@@ -1,0 +1,136 @@
+﻿@model IEnumerable<MyBlog.DataLayer.Category>
+@{
+    ViewBag.Title = "مدیریت دسته بندی ها";
+}
+<header class="bg-success text-light py-2">
+    <div class="container">
+        <div class="row">
+            <h1 class="col"><i class="fa fa-folder mr-2"></i>دسته بندی نوشته ها</h1>
+        </div>
+    </div>
+</header>
+<section class="serarch-box mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <form action="">
+                    <div class="input-group">
+                        <input type="search" placeholder="جستجو ..." class="form-control">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="submit">بگرد</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 col-12 text-center">
+                <a href="" class="w-50 btn btn-success" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                    <i class="fa fa-plus mr-1"></i>افزودن دسته بندی
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="posts-list mt-4">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h4>دسته بندی ها</h4>
+
+            </div>
+
+            <table class="table table-striped">
+                <thead class="thead-dark w-100">
+                    <tr>
+                        <th>#</th>
+                        <th>@Html.DisplayNameFor(model => model.CategoryName)</th>
+                        <th>تعداد پست ها</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="category_row_@item.CategoryID">
+                            <td>@item.CategoryID</td>
+                            <td> @item.CategoryName</td>
+
+
+                            <td>@item.Posts.ToList().Count</td>
+
+
+
+
+
+
+
+                            <td>
+                                <button onclick="DeleteCategory(@item.CategoryID)" data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-sm btn-danger">حذف</button>
+                                <button onclick="EditCategory(@item.CategoryID)" data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-sm btn-Warning">ویرایش</button>
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+        <nav class="mt-4">
+            <ul class="pagination">
+                <li class="page-item disabled"><a href="" class="page-link">Previous</a></li>
+                <li class="page-item active bg-success"><a href="" class="page-link">1</a></li>
+                <li class="page-item"><a href="" class="page-link">2</a></li>
+                <li class="page-item"><a href="" class="page-link">3</a></li>
+                <li class="page-item"><a href="" class="page-link">Next</a></li>
+
+            </ul>
+        </nav>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="myModalBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function DeleteCategory(id) {
+            $.get("/Admin/Categories/Delete/" + id, function (result) {
+                $("#myModal").modal();
+                $("#myModalLabel").html("حذف دسته بندی");
+                $("#myModalBody").html(result);
+            });
+        }
+        function EditCategory(id) {
+            $.get("/Admin/Categories/Edit/" + id , function (result){
+                $("#myModal").modal();
+                $("#myModalLabel").html("ویرایش دسته بندی");
+                $("#myModalBody").html(result);
+            })
+        }
+        function AddCategory() {
+            $.get("/Admin/Categories/Create" , function (result){
+                $("#myModal").modal();
+                $("#myModalLabel").html("دسته بندی جدید");
+                $("#myModalBody").html(result);
+            })
+        }
+    </script>
+}

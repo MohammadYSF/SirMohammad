@@ -1,0 +1,26 @@
+﻿@model MyBlog.DataLayer.WebsiteDetails
+@{
+    ViewBag.Title = "درباره ما";
+}
+<section id="body">
+    <div class="container">
+        <div class="articleHeader">
+            <h1 class="home-link mt-3">درباره من</h1>
+            @*<ul class="list-group list-group-horizontal">
+                    <li class="list-group-item border-0">در <b>نوشته ها</b></li>
+                    <li class="list-group-item border-0">21 تیر 1399</li>
+                    <li class="list-group-item border-0">
+                        <img src="https://source.unsplash.com/random/30x30" class="img-fluid rounded-circle ">
+
+                        محمد یوسفیان
+                    </li>
+                </ul>*@
+        </div>
+        <div class="articleBody">
+            <p>
+                @Model.AboutText
+            </p>
+        </div>
+
+    </div>
+</section>

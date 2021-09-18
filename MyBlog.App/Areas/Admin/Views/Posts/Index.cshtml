@@ -1,0 +1,106 @@
+﻿@model IEnumerable<MyBlog.DataLayer.Post>
+
+@{
+    ViewBag.Title = "مدیریت نوشته ها";
+}
+<section class="serarch-box mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-12">
+                
+                    <div class="input-group">
+                        <input type="search" placeholder="جستجو..." class="form-control" id="posts_search_box">
+                        <div class="input-group-append d-none">
+                            <button class="btn btn-info text-light" type="submit" onclick="SearchInTitles()">بگرد</button>
+                        </div>
+                    </div>
+                
+            </div>
+            <div class="col-md-6 col-12 text-center">
+                <a href="@Url.Action("Create" , "Posts")" class="w-50 btn btn-success">
+                    <i class="fa fa-plus mr-1"></i>افزودن نوشته
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="posts-list mt-4">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h4>آخرین پست ها</h4>
+
+            </div>
+
+            <table class="table table-striped">
+                <thead class="thead-dark w-100">
+                    <tr>
+                        <th>#</th>
+                        
+                        <th>@Html.DisplayNameFor(model => model.PostTitle)</th>
+                        <th>@Html.DisplayNameFor(model => model.Category.CategoryName)</th>
+                        <th>@Html.DisplayNameFor(model => model.PostDate)</th>
+                        <th>@Html.DisplayNameFor(model => model.User.Username)</th>
+                        <th>تعداد کامنت ها</th>
+                        <th>@Html.DisplayNameFor(model => model.ImageName)</th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderByDescending(a=> a.PostDate))
+                    {
+                        <tr id="post_row_@item.PostID">
+                            <td>@item.PostID</td>
+                            <td class="post_titles">@item.PostTitle</td>
+                            <td>@item.Category.CategoryName</td>
+                            <td>@(MyBlog.Utilities.PersianCalender.ToShamsi(item.PostDate))</td>
+                            <td>@item.User.Username</td>
+                            <td>@item.Comments.ToList().Count</td>
+                            <td><img src="~/Images/Posts/MainImages/100x100/@item.ImageName" style="max-width:150px;max-height:150px" alt="@item.ImageAlt" class="img-fluid" /></td>
+                            <td>
+                                <a href="@(Url.Action("Delete" , "Posts" , routeValues : new {id=item.PostID }))" class="btn btn-danger btn-sm">حذف</a>
+                                <a href="@(Url.Action("Edit" , "Posts" , routeValues : new {id=item.PostID }))" class="btn btn-warning btn-sm">ویرایش</a>
+                                <a href="@(Url.Action("Details" , "Posts" , routeValues : new {id=item.PostID }))" class="btn btn-secondary btn-sm">جزئیات</a>
+
+                            </td>
+
+
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</section>
+
+
+@section scripts{
+    <script>
+        const searchBox = document.getElementById("posts_search_box");
+        const titles = document.getElementsByClassName("post_titles");
+        const filterTitles = (text) => {
+            Array.from(titles)
+            .filter((title) => {
+                return !title.textContent.includes(text);
+            }).forEach((item) => {
+                item.parentElement.classList.add("d-none");
+            });
+
+            Array.from(titles)
+          .filter((title) => {
+              return title.textContent.includes(text);
+          }).forEach((item) => {
+              item.parentElement.classList.remove("d-none");
+          });
+        };
+        searchBox.addEventListener('keyup', (e) => {
+            filterTitles(searchBox.value.toLowerCase().trim());
+        });
+    </script>
+}

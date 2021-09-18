@@ -1,0 +1,97 @@
+﻿@model MyBlog.DataLayer.WebsiteDetails
+@{
+    ViewBag.Title = "ویرایش اطلاعات وب سایت";
+}
+<div class="container">
+    <h3 class="text-center mb-3 text-warning">ویرایش نوشته</h3>
+
+
+    @using (Html.BeginForm("Edit", "WebsiteDetails", FormMethod.Post))
+    {
+
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID)
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WebsitePersianName, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.WebsitePersianName, new { htmlAttributes = new { @class = "form-control d-block" } })
+            @Html.ValidationMessageFor(model => model.WebsitePersianName, "", new { @class = "text-danger" })
+
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WebsiteEnglishName, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.WebsiteEnglishName, new { htmlAttributes = new { @class = "form-control d-block" } })
+            @Html.ValidationMessageFor(model => model.WebsiteEnglishName, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.WebsiteOwner, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.WebsiteOwner, new { htmlAttributes = new { @class = "form-control d-block" } })
+            @Html.ValidationMessageFor(model => model.WebsiteOwner, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control d-block" } })
+            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control d-block" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TelegramID, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.TelegramID, new { htmlAttributes = new { @class = "form-control d-block" } })
+            @Html.ValidationMessageFor(model => model.TelegramID, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.InstagramID, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.InstagramID, new { htmlAttributes = new { @class = "form-control d-block" } })
+            @Html.ValidationMessageFor(model => model.InstagramID, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AboutText, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.AboutText, new { htmlAttributes = new { @class = "form-control d-block" } })
+            @Html.ValidationMessageFor(model => model.AboutText, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContactText, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.ContactText, new { htmlAttributes = new { @class = "form-control d-block" } })
+            @Html.ValidationMessageFor(model => model.ContactText, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LandingText, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.LandingText, new { htmlAttributes = new { @class = "form-control d-block" } })
+            @Html.ValidationMessageFor(model => model.LandingText, "", new { @class = "text-danger" })
+
+        </div>
+
+
+
+
+
+        <div class="form-group mt-3">
+            <input type="submit" value="ویرایش" class="btn btn-warning" />
+            <a href="@Url.Action("Index" , "WebsiteDetails")" class="btn btn-secondary">انصراف</a>
+
+
+        </div>
+
+    }
+</div>

@@ -1,0 +1,48 @@
+﻿/*start admin default page styles*/
+        *{
+            font-family: 'Vazir', sans-serif;
+        }
+        img{
+            max-width:100%;
+        }
+/*end*/
+
+/*start create post page style*/
+   .multi-search-filter{
+    border:1px solid #DDD;
+    border-radius: 3px;
+    padding:3px;
+    min-height: 26px;
+}
+.multi-search-filter > input {
+    border: 0px;
+    outline: none;
+   
+}
+.multi-search-item {
+    margin: 2px;
+    padding: 2px 24px 2px 8px;
+    float: left;
+    display: flex;
+    background-color: #212529;
+    color: #f8f9fa;
+    border-radius: 3px;
+    position: relative;
+}
+.multi-search-item > span {
+    
+    line-height: 18px;
+}
+.multi-search-item > .fa {
+    font-size: 12px;
+    line-height: 18px;
+    margin-left: 8px;
+    position: absolute;
+    right: 8px;
+    top: 2px;
+    color:#dc3545;
+}
+
+
+/*end*/
+

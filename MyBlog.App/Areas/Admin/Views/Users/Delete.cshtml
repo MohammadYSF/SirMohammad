@@ -1,0 +1,82 @@
+﻿@model MyBlog.DataLayer.Users
+
+@{
+    ViewBag.Title = "حذف کاربر";
+}
+
+<h2 class="text-danger text-center">حذف کاربر</h2>
+
+<div class="container">
+
+    <dl class="dl-horizontal">
+        <dt class="text-danger">
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt class="text-danger">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt class="text-danger">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt class="text-danger">
+            @Html.DisplayNameFor(model => model.Role.RoleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.RoleName)
+        </dd>
+
+        <dt class="text-danger">
+            @Html.DisplayNameFor(model => model.isAuthor)
+        </dt>
+      
+        <dd>
+            @Html.DisplayFor(model => model.isAuthor)
+        </dd>
+
+        <dt class="text-danger">
+            @Html.DisplayNameFor(model => model.RegisterDate)
+        </dt>
+
+        <dd>
+            @MyBlog.Utilities.PersianCalender.ToShamsi(Model.RegisterDate)
+        </dd>
+
+
+        <dt class="text-danger">
+            @Html.DisplayNameFor(model => model.ImageName)
+        </dt>
+
+        <dd>
+            <img src="/Images/Profiles/OriginalSize/@Model.ImageName" alt="@Model.Username" class="img-fluid" style="max-height:300px;" />
+        </dd>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" /> |
+            <a href="@Url.Action("Index" , "Users" , new {@id = Model.UserID })" class="btn btn-secondary">انصراف</a>
+        </div>
+    }
+</div>

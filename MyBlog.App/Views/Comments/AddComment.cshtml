@@ -1,0 +1,39 @@
+﻿@model MyBlog.DataLayer.Comment
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+<div class="col-12 col-md-6">
+    <p class="text-center text-secondary">با ثبت نظر خود من را خوشحال کنید</p>
+
+    @using (Ajax.BeginForm("AddComment", "Comments", new AjaxOptions()
+    {
+        UpdateTargetId = "comments_list",
+        OnSuccess = "reactToSuccessAddComment()",
+        OnFailure = "reactToFailureAddComment()"
+    } , new {@id = "add-comment-form" }))
+    {
+
+        <p class="text-danger text-lead fw-light d-none"></p>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.PostID)
+        @Html.HiddenFor(model => model.ParentID)
+        @Html.EditorFor(model => model.CommentName, new { htmlAttributes = new { @class = "form-control mt-2", @placeholder = "نام شما" } })
+        @Html.ValidationMessageFor(model => model.CommentName, "", new { @class = "text-danger mt-1 text-right" })
+
+        @Html.EditorFor(model => model.CommentEmail, new { htmlAttributes = new { @class = "form-control mt-2", @placeholder = "ایمیل شما" } })
+        @Html.ValidationMessageFor(model => model.CommentEmail, "", new { @class = "text-danger mt-1 text-right" })
+
+        @Html.EditorFor(model => model.CommentText, new { htmlAttributes = new { @class = "form-control mt-2", @col = "30", @rows = "10", placeholder = "نظر شما" } })
+        @Html.ValidationMessageFor(model => model.CommentText, "", new { @class = "text-danger mt-1" })
+
+        <div class="w-100 text-right">
+            <input type="submit" class="btn btn-outline-danger mt-2"
+                   value="ثبت نظر">
+        </div>
+    }
+
+
+</div>
+

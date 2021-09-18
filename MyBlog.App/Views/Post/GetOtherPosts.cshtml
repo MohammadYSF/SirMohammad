@@ -1,0 +1,33 @@
+﻿@model List<MyBlog.DataLayer.Post>
+@{ 
+    int i = 1;
+}
+<div class="otherArticles px-5">
+    <ul class="nav justify-content-between">
+        @foreach (var item in Model)
+        {
+
+            <li class="nav-item">
+                <a class="nav-link home-link" aria-current="page" href="@Url.Action("GetPost" , "Home" , new {id = item.PostID })">
+                @if (i % 2 == 1)
+                {
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    <img src="/Images/Posts/MainImages/100x100/@item.ImageName" class="rounded-circle" width="90px" height="90px">
+                    @item.PostTitle
+                }
+                else
+                {
+                    <img src="/Images/Posts/MainImages/100x100/@item.ImageName" class="rounded-circle" width="90px" height="90px">
+                    @item.PostTitle
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+
+                }
+
+                </a>
+            </li>
+            i++;
+        }
+
+    </ul>
+</div>
+

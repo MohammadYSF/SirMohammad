@@ -1,0 +1,30 @@
+﻿@model MyBlog.DataLayer.Category
+
+@{
+    ViewBag.Title = "حذف دسته بندی";
+}
+
+<div class="container">
+    <p>می خواهید <span class="fw-bold text-danger">@Model.CategoryName</span>  را حذف کنید؟</p>
+    <br />
+    <button class="btn btn-danger" id="btn_delete_category_in_modal">حذف کن</button>
+
+</div>
+<script>
+        document.getElementById("btn_delete_category_in_modal").onclick = () => {
+            DeleteCategory_p2(@Model.CategoryID);
+        };
+        function DeleteCategory_p2(id) {
+            $.ajax({
+                url: "/Admin/Categories/Delete/" + id,
+                type: "POST",
+                success: () => {
+                    $('#myModal').modal('hide');
+                    $('#category_row_' + id).hide('slow');
+                },
+                error : () =>{
+                    alert("failure");
+            }
+            });
+        }
+</script>

@@ -1,0 +1,94 @@
+﻿@model MyBlog.DataLayer.WebsiteDetails
+@{
+    ViewBag.Title = "اطلاعات وب سایت";
+}
+
+<h2 class="text-secondary text-center my-2">اطلاعات و جزئیات وب سایت</h2>
+
+<div class="container">
+    <div class="text-center">
+        <a href="@Url.Action("Edit" , "WebsiteDetails")" class="btn btn-warning">ویرایش اطلاعات</a>
+    </div>
+
+    <dl class="dl-horizontal">
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.WebsitePersianName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WebsitePersianName)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.WebsiteEnglishName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WebsiteEnglishName)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.WebsiteOwner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WebsiteOwner)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Email)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.TelegramID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelegramID)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.InstagramID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstagramID)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.AboutText)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AboutText)
+        </dd>
+
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.ContactText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactText)
+        </dd>
+        <dt class="text-secondary border-bottom border-secondary">
+            @Html.DisplayNameFor(model => model.LandingText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LandingText)
+        </dd>
+    </dl>
+</div>
+
+
