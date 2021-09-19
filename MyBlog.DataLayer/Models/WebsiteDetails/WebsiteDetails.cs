@@ -25,11 +25,11 @@ namespace MyBlog.DataLayer
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
 
         public string AboutText { get; set; }
-        [Display(Name = "ارتباط با ما")]
+        [Display(Name = " متن ارتباط با ما")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
 
         public string ContactText { get; set; }
-        [Display(Name = "ارتباط با ما")]
+        [Display(Name = "شماره تلفن همراه")]
         [DataType(DataType.PhoneNumber)]
 
         public string PhoneNumber { get; set; }
