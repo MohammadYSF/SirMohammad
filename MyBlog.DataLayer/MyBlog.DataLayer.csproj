@@ -175,6 +175,10 @@
     <Compile Include="Migrations\202109180606115_update_database_28.Designer.cs">
       <DependentUpon>202109180606115_update_database_28.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109190857211_update_database_29.cs" />
+    <Compile Include="Migrations\202109190857211_update_database_29.Designer.cs">
+      <DependentUpon>202109190857211_update_database_29.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounts\Roles.cs" />
     <Compile Include="Models\Accounts\Users.cs" />
@@ -288,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109180606115_update_database_28.resx">
       <DependentUpon>202109180606115_update_database_28.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109190857211_update_database_29.resx">
+      <DependentUpon>202109190857211_update_database_29.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
