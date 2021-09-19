@@ -23,7 +23,7 @@
                 </form>
             </div>
             <div class="col-md-6 col-12 text-center">
-                <a href="" class="w-50 btn btn-success" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                <a href="" class="w-50 btn btn-success" onclick="AddCategory()" data-bs-toggle="modal" data-bs-target="#myModal">
                     <i class="fa fa-plus mr-1"></i>افزودن دسته بندی
                 </a>
             </div>
@@ -107,8 +107,8 @@
         </div>
     </div>
 </div>
-@section Scripts{
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@section scripts{
+<script src="/Scripts/jquery-1.10.2.min.js"></script>
 @Scripts.Render("~/bundles/jqueryval")
     <script>
         function DeleteCategory(id) {

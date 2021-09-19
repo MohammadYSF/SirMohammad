@@ -166,6 +166,11 @@ namespace MyBlog.App.Areas.Admin.Controllers
             System.IO.File.Delete(Server.MapPath("/Images/Posts/MainImages/OriginalSize/" + post.ImageName));
             System.IO.File.Delete(Server.MapPath("/Images/Posts/MainImages/100x100/" + post.ImageName));
             db.PostRepository.Delete(post);
+            List<Comment> postComments = db.CommentRepository.GetByPostID(post.PostID);
+            foreach (var comment in postComments)
+            {
+                db.CommentRepository.Delete(comment);
+            }
             db.Save();
             return RedirectToAction("Index");
         }
