@@ -165,6 +165,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PickingController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -177,6 +178,8 @@
     <Content Include="Areas\Admin\Content\config.js" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\customStyles.css" />
+    <Content Include="Content\LecturePicker.css" />
+    <Content Include="Content\LecturePicker.js" />
     <Content Include="favicon.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -251,6 +254,7 @@
     <Content Include="Views\Home\SearchByQ.cshtml" />
     <Content Include="Views\Home\SearchByCategory.cshtml" />
     <Content Include="Views\Home\GetCategories.cshtml" />
+    <Content Include="Views\Picking\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
