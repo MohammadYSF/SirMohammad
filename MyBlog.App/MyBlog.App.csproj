@@ -212,6 +212,7 @@
     <Content Include="آقامحمد - بدون زمینه.png" />
     <Content Include="Areas\Admin\Content\Vazir-Regular.ttf" />
     <Content Include="Areas\Admin\Content\Vazir-Medium.woff" />
+    <None Include="Properties\PublishProfiles\MyBlog_Publish1.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

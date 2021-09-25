@@ -2,7 +2,10 @@
 @{
     ViewBag.Title = Model.PostTitle;
 }
-
+@section metaTags{
+    <meta name="description" content="@Model.PostDescription"/>
+    <meta name="keywords" content="@Model.PostKeywords"/>
+    }
 <section id="body">
     <div class="container">
         <div class="articleHeader">
