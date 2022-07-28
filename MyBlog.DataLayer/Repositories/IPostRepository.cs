@@ -14,7 +14,7 @@ namespace MyBlog.DataLayer
         bool Delete(Post post);
         bool Delete(object id);
         Post FindByID(object id);
-        IEnumerable<Post> GetAll();
+        IQueryable<Post> GetAll();
         IEnumerable<Post> Get(Expression<Func<Post, bool>> where = null, Func<IQueryable<Post>, IOrderedQueryable<Post>> orderby = null, string includes = null);
         
     }

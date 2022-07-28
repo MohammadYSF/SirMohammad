@@ -75,10 +75,12 @@ namespace MyBlog.DataLayer
             return _db.Posts.Include(a=> a.User).First(a=> a.PostID == postID);
         }
 
-        public IEnumerable<Post> GetAll()
+        public IQueryable<Post> GetAll()
         {
-            var data = _db.Posts.Include(p => p.Category).Include(p => p.Comments).Include(a => a.User);
-            return data;
+            //var data = _db.Posts.Include(p => p.Category).Include(p => p.Comments).Include(a => a.User);
+            var data2 = _db.Posts.Include("Category").Include("User").Include("Comments");
+            //return data;
+            return data2;
 
         }
 

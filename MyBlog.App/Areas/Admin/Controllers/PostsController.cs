@@ -21,7 +21,7 @@ namespace MyBlog.App.Areas.Admin.Controllers
         // GET: Admin/Posts
         public ActionResult Index()
         {
-            var posts = db.PostRepository.GetAll();
+            var posts = db.PostRepository.GetAll().ToList();
             return View(posts);
         }
 
@@ -93,7 +93,7 @@ namespace MyBlog.App.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-
+            var usercombo = db.UserRepository.Get(a => a.isAuthor).ToList();
             ViewBag.UserID = new SelectList(db.UserRepository.Get(a => a.isAuthor == true).ToList(), "UserID", "Username");
             ViewBag.CategoryID = new SelectList(db.CategoryRepository.GetAll(), "CategoryID", "CategoryName", post.CategoryID);
             return View(post);
@@ -104,8 +104,9 @@ namespace MyBlog.App.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PostID,CategoryID,PostTitle,PostDescription,PostText,PostKeywords,PostDate,PostAuthor,ImageName,ImageAlt,UserID")] Post post, HttpPostedFileBase img_upload, string[] Keywords)
+        public ActionResult Edit([Bind(Include = "PostID,CategoryID,PostTitle,PostDescription,PostText,PostDate,ImageName,ImageAlt,UserID")] Post post, HttpPostedFileBase img_upload, string[] Keywords)
         {
+            post.PostKeywords = "default";
             if (ModelState.IsValid)
             {
                 if (img_upload != null)
