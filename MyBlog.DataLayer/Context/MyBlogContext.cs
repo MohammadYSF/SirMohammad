@@ -17,7 +17,7 @@ namespace MyBlog.DataLayer
         public DbSet<Roles> Roles { get; set; }
         public DbSet<PostSubImage> PostSubImages { get; set; }
         public DbSet<WebsiteDetails> WebsiteDetails { get; set; }
-
+        public DbSet<FunYaasie> FunYaasies { get; set; }
 
     }
 }

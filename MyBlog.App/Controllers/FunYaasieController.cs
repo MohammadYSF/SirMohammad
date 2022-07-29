@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyBlog.DataLayer;
@@ -11,79 +12,100 @@ namespace MyBlog.App.Controllers
         // GET: FunYaasie
         public ActionResult Index()
         {
-            
-            return View();
+            using (UnitOfWork db = new UnitOfWork())
+            {
+                var data = db.FunYaasieRepository.GetAll().ToList();
+                return View(data);
+
+            }
         }
 
-        // GET: FunYaasie/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
+      
         // GET: FunYaasie/Create
+        [HttpGet]
         public ActionResult Create()
         {
-            return View();
+
+            return View(new FunYaasie());
         }
 
         // POST: FunYaasie/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Reporter,Subject,Description")] FunYaasie funYaasie)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                using (UnitOfWork db = new UnitOfWork())
+                {
+                    funYaasie.CreationDate = DateTime.Now;
+                    funYaasie.ModificationDate = DateTime.Now;
+                    db.FunYaasieRepository.Add(funYaasie);
+                    db.Save();
+                    return RedirectToAction("Index");
+                }
 
-                return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(funYaasie);
         }
-
         // GET: FunYaasie/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            using (UnitOfWork db = new UnitOfWork())
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                FunYaasie funYaasie = db.FunYaasieRepository.FindByID(id);
+                if (funYaasie == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.FormMode = "Edit";
+                return View("Create" , funYaasie);
+            }
+
         }
 
         // POST: FunYaasie/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Reporter,Description,Subject,ModificationDate,CreationDate")] FunYaasie funYaasie)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                funYaasie.ModificationDate = DateTime.Now;
+                using (UnitOfWork db = new UnitOfWork())
+                {
+                    db.FunYaasieRepository.Update(funYaasie);
+                    db.Save();
+                    return RedirectToAction("Index");
+                }
             }
-            catch
+            else
             {
-                return View();
+                return View("Create",funYaasie);
             }
         }
 
-        // GET: FunYaasie/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
 
-        // POST: FunYaasie/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpGet]
+        public string Delete(int id)
         {
-            try
+            using (UnitOfWork db = new UnitOfWork())
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
+                FunYaasie funYaasie = db.FunYaasieRepository.FindByID(id);
+                if (funYaasie == null)
+                {
+                    return "Error";
+                }
+                else
+                {
+                    db.FunYaasieRepository.Delete(funYaasie);
+                    db.Save();
+                    return "";
+                }
             }
         }
     }

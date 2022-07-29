@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MyBlog.DataLayer.FunYaasie>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/FunYaasie/_FunYaasieLayout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    <div class="card w-75 mx-auto rounded-0 bg-transparent text-light border border-light mt-5 border-0 customCard" id="row_@item.Id">
+        <div class="card-body">
+            <h5 class="card-title"><span class="label">گزارش دهنده</span> : @item.Reporter</h5>
+            <h5 class="card-subtitle"><span class="label">سوژه</span> : @item.Subject</h5>
+            <p class="card-text text-white-50">
+                <span class="label">توضیحات</span> :
+                @item.Description
+            </p>
+            <div>
+                <a onclick="deleteItem(@item.Id)" type="button" class="mx-2 text-decoration-none text-danger">حذف</a>
+                <a href="@Url.Action("Edit" , "FunYaasie" , new { @id = item.Id})" type="button" class="mx-2 text-decoration-none text-info">
+                    ویرایش
+                </a>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    const deleteItem = (id) => {
+        if (confirm("آیا از حذف این داده مطمئن هستید ؟ ") == true) {
+            fetch('/FunYaasie/Delete/' + id).then((d) => {
+                if (d.ok == true) {
+                
+                    document.getElementById("row_" + id).classList.add("d-none");
+                }
+                else {
+                    alert("خطا در حذف رکورد");
+                }
+            }).catch((e) => {
+                console.log("catched error : ", e);
+            });
+        }
+
+    }
+</script>

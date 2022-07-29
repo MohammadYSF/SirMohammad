@@ -256,6 +256,9 @@
     <Content Include="Views\Home\SearchByCategory.cshtml" />
     <Content Include="Views\Home\GetCategories.cshtml" />
     <Content Include="Views\Picking\Index.cshtml" />
+    <Content Include="Views\FunYaasie\_FunYaasieLayout.cshtml" />
+    <Content Include="Views\FunYaasie\Index.cshtml" />
+    <Content Include="Views\FunYaasie\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -267,7 +270,6 @@
     <Folder Include="Images\Profiles\100x100\" />
     <Folder Include="Images\Profiles\OriginalSize\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\FunYaasie\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

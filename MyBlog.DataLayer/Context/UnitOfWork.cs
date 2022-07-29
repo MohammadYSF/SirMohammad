@@ -96,6 +96,19 @@ namespace MyBlog.DataLayer
                 return _websiteDetailsRepository;
             }
         }
+        private FunYaasieRepository _funYaasieRepository;
+
+        public IFunYaasieRepository FunYaasieRepository
+        {
+            get
+            {
+                if (_funYaasieRepository == null)
+                {
+                    _funYaasieRepository = new FunYaasieRepository(_db);
+                }
+                return _funYaasieRepository;
+            }
+        }
 
 
 

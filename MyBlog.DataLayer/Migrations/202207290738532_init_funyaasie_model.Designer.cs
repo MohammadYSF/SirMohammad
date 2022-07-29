@@ -7,13 +7,13 @@ namespace MyBlog.DataLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class update_database_29 : IMigrationMetadata
+    public sealed partial class init_funyaasie_model : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(update_database_29));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init_funyaasie_model));
         
         string IMigrationMetadata.Id
         {
-            get { return "202109190857211_update_database_29"; }
+            get { return "202207290738532_init_funyaasie_model"; }
         }
         
         string IMigrationMetadata.Source

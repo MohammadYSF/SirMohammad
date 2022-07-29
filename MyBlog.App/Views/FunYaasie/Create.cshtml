@@ -1,0 +1,53 @@
+﻿@model MyBlog.DataLayer.FunYaasie
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/FunYaasie/_FunYaasieLayout.cshtml";
+}
+@using (Html.BeginForm(ViewBag.FormMode == "Edit" ? "Edit" : "Create", "FunYaasie", FormMethod.Post, new { @class = "w-50 mt-5 mx-auto" }))
+{
+    @Html.AntiForgeryToken()
+    <input class="d-none" value="@Model.Id" name="Id" />
+    <input class="d-none" value="@Model.CreationDate" name="CreationDate" id="CreationDate" />
+    <input class="d-none" value="@Model.ModificationDate" name="ModificationDate" id="ModificationDate"/>
+    <div class="mb-3">
+        <input value="@Model.Reporter"
+               type="text" placeholder="گزارش کننده"
+               class="border-top-0 border-start-0 border-end-0 form-control rounded-0 customInput" id="Reporter"
+               name="Reporter" />
+        <div id="errorMessage"
+             class="form-text text-sm rounded-0 customErrorText"
+             style="text-align:right">
+            @Html.ValidationMessageFor(model => model.Reporter, "")
+
+        </div>
+    </div>
+    <div class="mb-3">
+        <input value=@Model.Subject
+               type="text" placeholder="موضوع"
+               class="border-top-0 border-start-0 border-end-0 form-control rounded-0 customInput" id="Subject"
+               name="Subject" />
+        <div id="errorMessage"
+             class="form-text text-sm rounded-0 customErrorText"
+             style="text-align:right">
+            @Html.ValidationMessageFor(model => model.Subject, "")
+
+        </div>
+    </div>
+    <div class="mb-3">
+        <input value=@Model.Description
+               type="text" placeholder="توضیحات تکمیلی"
+               class="border-top-0 border-start-0 border-end-0 form-control rounded-0 customInput" id="Description"
+               name="Description" />
+        <div id="errorMessage"
+             class="form-text text-sm rounded-0 customErrorText"
+             style="text-align:right">
+            @Html.ValidationMessageFor(model => model.Description, "")
+
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <input type="submit" class="customBtn rounded-0 col-6" value="ثبت" />
+    </div>
+}
+
+
