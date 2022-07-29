@@ -164,6 +164,7 @@
     <Compile Include="Areas\Admin\Controllers\WebsiteDetailsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\FunYaasieController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PickingController.cs" />
     <Compile Include="Controllers\PostController.cs" />
@@ -266,6 +267,7 @@
     <Folder Include="Images\Profiles\100x100\" />
     <Folder Include="Images\Profiles\OriginalSize\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\FunYaasie\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
